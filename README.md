@@ -5,17 +5,20 @@ This is a basic Makefile to configure my Mac OS X box from scratch for software 
 # It will
 
 ## Install
-* XCode
-* HomeBrew
-* iTerm2
-* TextMate
-* VirtualBox
 
 ### Tools
+* XCode
+* iTerm2
+* Janus (for VIM)
+* TextMate
+* VirtualBox
+* HomeBrew
+
+### Frameworks
 * rvm and ruby 1.9.x
 * Python 1.7+
+* Oracle and Open JDK 1.6
 * Mongo
-* Janus (for VIM)
 
 ### Gems
 * git-pairing, promptula
