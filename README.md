@@ -22,7 +22,6 @@ This is a basic Makefile to configure my Mac OS X box from scratch for software 
 * Python 1.7+
 * Mongo
 * MySQL
-* JDK 1.6
 
 ### Gems
 * git-pairing, promptula
