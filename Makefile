@@ -4,7 +4,14 @@
 
 # Define macros
 SHELL := /bin/bash
-BREW_VERSION := $(shell brew --version)
+BREW_TEST := Example usage
+
+ifneq (,$(findstring $(BREW_TEST),$(shell brew help)))
+	DO_BREW = brew update
+else
+	DO_BREW = ruby -e $(curl -fsSL https://raw.github.com/mxcl/homebrew/go)
+endif
+
 
 default:
 	#
@@ -25,12 +32,7 @@ baseline:
 	#
 	# Install Homebrew
 	
-	ifneq ($(BREW_VERSION),)
-		brew update
-	else
-		ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
-	endif
-
+	$(DO_BREW)	
 	brew doctor
 	brew install git
 
