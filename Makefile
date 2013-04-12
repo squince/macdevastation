@@ -4,6 +4,7 @@
 
 # Define macros
 SHELL := /bin/bash
+BREW_VERSION := $(shell brew --version)
 
 default:
 	#
@@ -23,9 +24,13 @@ all: baseline ruby python cli databases node
 baseline:
 	#
 	# Install Homebrew
+	
+	ifneq ($(BREW_VERSION),)
+		brew update
+	else
+		ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+	endif
 
-	brew update
-	ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
 	brew doctor
 	brew install git
 
