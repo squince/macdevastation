@@ -13,10 +13,12 @@ default:
 	#	 - python
 	#	 - ruby
 	#	 - cli
+	#	 - node
 
 baseline:
 	#
 	# Install Homebrew
+
 	ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
 	brew doctor
 	brew install git
@@ -70,7 +72,15 @@ python: baseline
 databases: baseline
 	#
 	# Install MongoDB and MySQL
-	
+
 	brew install mongodb
 	brew install mysql
 
+node: baseline
+	#
+	# Install node and npm packages
+
+	brew install node
+	npm prune
+	npm install
+	npm install grunt-cli -g
