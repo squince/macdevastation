@@ -5,6 +5,12 @@ This is a basic Makefile to configure my Mac OS X box from scratch for software 
 Mac Dev A Station - get it?!  MacDevAStation... macdevastation...
 (sorry, couldn't resist the childishness)
 
+# Usage
+
+```
+  sudo make [ baseline | ruby | python | databases | node | all ]
+```
+
 # Install and/or Configure
 
 * HomeBrew
