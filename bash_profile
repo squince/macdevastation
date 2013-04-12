@@ -1,5 +1,9 @@
-export PATH="/usr/local/bin
+export PATH="/usr/local/bin:${PATH}"
 export EDITOR = vim
+export PS1="\$(pwd) \$(promptula) "
+
 alias ll='ls -lha'
 alias vi='vim'
-export GCLOUD_ORG=Search
+alias tm='open -a TextMate'
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
