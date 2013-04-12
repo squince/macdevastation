@@ -7,7 +7,7 @@ SHELL := /bin/bash
 BREW_TEST := Example usage
 
 ifneq (,$(findstring $(BREW_TEST),$(shell brew help)))
-	DO_BREW = brew update
+	DO_BREW = pushd /usr/local/Library; git stash; git clean -df; popd; brew update
 else
 	DO_BREW = ruby -e $(curl -fsSL https://raw.github.com/mxcl/homebrew/go)
 endif
