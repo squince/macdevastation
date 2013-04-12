@@ -11,7 +11,13 @@ endif
 ifeq ($(wildcard ~/.bash_profile),)
 	DO_BASH_PROFILE = echo bash_profile already exists
 else
-	DO_BASH_PROFILE = curl -L http://github.com/squince/macdevstation/blob/master/bash_profile > ~/.bash_profile
+	DO_BASH_PROFILE = curl -L http://github.com/squince/macdevstation/blob/master/bash_profile > ~/.bash_profile && source ~/.bash_profile
+endif	
+
+ifeq ($(wildcard ~/Applications/MacVim.app),)
+	DO_MACVIM = echo MacVim already installed
+else
+	DO_MACVIM = brew install macvim
 endif	
 
 default:
@@ -42,12 +48,13 @@ cli: ruby
 	# Install Command Line Tools
 
 	$(DO_BASH_PROFILE)
-	brew install macvim
+	$(DO_MACVIM)	
 	# Install Janus - VIM extensions
 	curl -Lo- https://bit.ly/janus-bootstrap | bash
 
 	gem install git-pairing
-	gem install promptula; promptula --install
+	gem install promptula
+	promptula --install
 
 ruby: baseline
 	#
