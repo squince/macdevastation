@@ -6,22 +6,24 @@
 SHELL := /bin/bash
 
 default:
-
-	# default target simply echos the list of available targets
-	echo "The following targets are available:"
-	echo " > databases"
-	echo " > python"
-	echo " > ruby"
-	echo " > cli"
+	#
+	# The following targets are available:
+	
+	#	 - databases
+	#	 - python
+	#	 - ruby
+	#	 - cli
 
 baseline:
-
+	#
 	# Install Homebrew
 	ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
 	brew doctor
 	brew install git
 
 cli: ruby
+	#	
+	# Install Command Line Tools
 
 	ifeq ($(wildcard ~/.bash_profile),)
 		echo "bash_profile already exists"
@@ -37,17 +39,18 @@ cli: ruby
 	gem install promptula; promptula --install
 
 ruby: baseline
+	#
+	# Install Ruby and related tools
 
-	# Install RVM
 	curl -L https://get.rvm.io | bash -s stable
 
 	brew install libksba
 	brew install cmake autoconf automake apple-gcc42
-	# RVM Install 1.9.3 and set as default
 	rvm install 1.9.3
 	rvm use 1.9.3 --default
 	rvm pkg install libyaml; rvm pkg install readline
 
+	#
 	# Gem installs
 	gem install rake
 	gem install bundler
@@ -57,15 +60,17 @@ ruby: baseline
 	gem install gemcutter
 
 python: baseline
+	#
+	# Install Python and related tools
 
 	brew install python --framework
-
-	# Install Python stuff
 	easy_install pip
 	pip install virtualenv	
 
 databases: baseline
-
+	#
+	# Install MongoDB and MySQL
+	
 	brew install mongodb
 	brew install mysql
 
