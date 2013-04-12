@@ -26,6 +26,7 @@ This is a basic Makefile to configure my Mac OS X box from scratch for software 
 
 ## Configure
 * aliases for opening some tools, etc.
+* environment variables {EDITOR, PS1}
 * command prompt
 * SSH keys
 * GitHub
