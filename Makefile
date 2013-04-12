@@ -1,7 +1,3 @@
-# TODO: Conditionalize each target (or portion thereof) so that installs only run for
-# 			items not already installed and configured - this Makefile is a onetime initialization
-# 			of a developer workstation
-
 # Define macros
 SHELL := /bin/bash
 BREW_TEST := Example usage
@@ -12,6 +8,11 @@ else
 	DO_BREW = ruby -e $(curl -fsSL https://raw.github.com/mxcl/homebrew/go)
 endif
 
+ifeq ($(wildcard ~/.bash_profile),)
+	DO_BASH_PROFILE = echo bash_profile already exists
+else
+	DO_BASH_PROFILE = curl -L http://github.com/squince/macdevstation/blob/master/bash_profile > ~/.bash_profile
+endif	
 
 default:
 	#
@@ -40,12 +41,7 @@ cli: ruby
 	#	
 	# Install Command Line Tools
 
-	ifeq ($(wildcard ~/.bash_profile),)
-		echo "bash_profile already exists"
-	else
-		curl -L http://github.com/squince/macdevstation/blob/master/bash_profile > ~/.bash_profile
-		echo "created baseline bash_profile"
-	endif	
+	$(DO_BASH_PROFILE)
 	brew install macvim
 	# Install Janus - VIM extensions
 	curl -Lo- https://bit.ly/janus-bootstrap | bash
@@ -59,10 +55,10 @@ ruby: baseline
 
 	curl -L https://get.rvm.io | bash -s stable
 
-	brew tap homebrew/versions
+	#brew tap homebrew/versions
 	brew install gcc48
 	brew install libksba
-	brew install cmake autoconf automake
+	#brew install cmake autoconf automake
 	rvm install 1.9.3
 	rvm use 1.9.3 --default
 	rvm pkg install libyaml; rvm pkg install readline
