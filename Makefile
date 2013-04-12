@@ -57,8 +57,10 @@ ruby: baseline
 
 	curl -L https://get.rvm.io | bash -s stable
 
+	brew tap homebrew/versions
+	brew install gcc48
 	brew install libksba
-	brew install cmake autoconf automake apple-gcc42
+	brew install cmake autoconf automake
 	rvm install 1.9.3
 	rvm use 1.9.3 --default
 	rvm pkg install libyaml; rvm pkg install readline
