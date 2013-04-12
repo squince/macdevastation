@@ -4,21 +4,25 @@ This is a basic Makefile to configure my Mac OS X box from scratch for software 
 
 # It will
 
+## Create
+* ~/.bash_profile
+
 ## Install
 
 ### Tools
-* XCode
-* iTerm2
+* HomeBrew
+* gcc-4.2
 * Janus (for VIM)
+* iTerm2
 * TextMate
 * VirtualBox
-* HomeBrew
 
 ### Frameworks
 * rvm and ruby 1.9.x
 * Python 1.7+
-* Oracle and Open JDK 1.6
 * Mongo
+* MySQL
+* JDK 1.6
 
 ### Gems
 * git-pairing, promptula
@@ -30,6 +34,3 @@ This is a basic Makefile to configure my Mac OS X box from scratch for software 
 * command prompt
 * SSH keys
 * GitHub
-
-## Create
-* ~/.bash_profile
