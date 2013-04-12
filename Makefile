@@ -9,11 +9,16 @@ default:
 	#
 	# The following targets are available:
 	
+	#	 - all -> as implied, executes all below targets
 	#	 - databases
 	#	 - python
 	#	 - ruby
 	#	 - cli
 	#	 - node
+
+all: baseline ruby python cli databases node
+	#
+	# Executes all targets
 
 baseline:
 	#
@@ -81,6 +86,4 @@ node: baseline
 	# Install node and npm packages
 
 	brew install node
-	npm prune
-	npm install
 	npm install grunt-cli -g
