@@ -1,24 +1,41 @@
 # Define macros
 SHELL := /bin/bash
 BREW_TEST := Example usage
+BREW_TAP = versions
+FILE_TEST := No such file
 
+# ***** Brew Installed? *****
 ifneq (,$(findstring $(BREW_TEST),$(shell brew help)))
 	DO_BREW = pushd /usr/local/Library; git stash; git clean -df; popd; brew update
 else
 	DO_BREW = ruby -e $(curl -fsSL https://raw.github.com/mxcl/homebrew/go)
 endif
 
-ifeq ($(wildcard ~/.bash_profile),)
+
+# ***** Bash Profile Exist? *****
+ifneq (,$(findstring $(FILE_TEST),$(shell ls ~/.bash_profile)))
 	DO_BASH_PROFILE = echo bash_profile already exists
 else
-	DO_BASH_PROFILE = curl -L http://github.com/squince/macdevstation/blob/master/bash_profile > ~/.bash_profile && source ~/.bash_profile
-endif	
+	DO_BASH_PROFILE = curl -fsSL https://raw.github.com/squince/macdevastation/master/bash_profile > ~/.bash_profile && source ~/.bash_profile
+endif
 
-ifeq ($(wildcard ~/Applications/MacVim.app),)
+
+# ***** MacVim Installed? *****
+ifneq (,$(findstring $(FILE_TEST),$(shell ls /Applications/MacVim.app)))
 	DO_MACVIM = echo MacVim already installed
 else
 	DO_MACVIM = brew install macvim
-endif	
+endif
+
+
+# ***** Brew Versions Tapped? *****
+ifeq (,$(findstring $(BREW_TAP),$(shell brew tap)))
+	DO_BREW_TAP = brew tap homebrew/versions
+else
+	DO_BREW_TAP = echo Already Brew Tapped Versions
+endif
+
+
 
 default:
 	#
@@ -41,20 +58,21 @@ baseline:
 	
 	$(DO_BREW)	
 	brew doctor
-	brew install git
+	-brew install git
 
-cli: ruby
+cli: 
+	#ruby
 	#	
 	# Install Command Line Tools
 
 	$(DO_BASH_PROFILE)
 	$(DO_MACVIM)	
 	# Install Janus - VIM extensions
-	curl -Lo- https://bit.ly/janus-bootstrap | bash
+	-curl -Lo- https://bit.ly/janus-bootstrap | bash
 
-	gem install git-pairing
-	gem install promptula
-	promptula --install
+	-gem install git-pairing
+	-gem install promptula
+	-promptula --install
 
 ruby: baseline
 	#
@@ -62,10 +80,13 @@ ruby: baseline
 
 	curl -L https://get.rvm.io | bash -s stable
 
-	#brew tap homebrew/versions
-	brew install gcc48
-	brew install libksba
-	#brew install cmake autoconf automake
+	$(DO_BREW_TAP)
+	#brew install gcc48
+	chmod go+w /usr/local/lib
+	chmod go+w /usr/local/share
+	-brew install libksba
+	-brew install cmake
+	rvm autolibs enable
 	rvm install 1.9.3
 	rvm use 1.9.3 --default
 	rvm pkg install libyaml; rvm pkg install readline
@@ -91,8 +112,8 @@ databases: baseline
 	#
 	# Install MongoDB and MySQL
 
-	brew install mongodb
-	brew install mysql
+	-brew install mongodb
+	-brew install mysql
 
 node: baseline
 	#

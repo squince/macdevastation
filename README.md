@@ -8,7 +8,7 @@ Mac Dev A Station - get it?!  MacDevAStation... macdevastation...
 # Usage
 
 ```
-  sudo make [ baseline | ruby | python | databases | node | all ]
+  export PATH=/usr/local/bin:$PATH; sudo make [ baseline | ruby | python | databases | node | all ]
 ```
 
 # Install and/or Configure
