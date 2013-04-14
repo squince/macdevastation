@@ -33,7 +33,6 @@ Mac Dev A Station - get it?!  MacDevAStation... macdevastation...
   * aliases for opening some cli tools
   * environment variables {EDITOR, PS1}
   * command prompt
-  * SSH keys
 
 ### Not yet implemented
 * iTerm2
