@@ -34,9 +34,10 @@ Mac Dev A Station - get it?!  MacDevAStation... macdevastation...
   * environment variables {EDITOR, PS1}
   * command prompt
   * SSH keys
-  * GitHub
 
 ### Not yet implemented
 * iTerm2
 * TextMate
 * VirtualBox
+* GitHub
+* vimrc

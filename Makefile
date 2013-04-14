@@ -48,7 +48,7 @@ default:
 	#	 - cli
 	#	 - node
 
-all: baseline ruby python cli databases node
+all: baseline ruby cli python databases node
 	#
 	# Executes all targets
 
