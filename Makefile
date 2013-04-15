@@ -89,7 +89,6 @@ ruby: baseline
 	rvm autolibs enable
 	rvm install 1.9.3
 	rvm use 1.9.3 --default
-	rvm pkg install libyaml; rvm pkg install readline
 
 	#
 	# Gem installs
