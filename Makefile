@@ -1,8 +1,10 @@
 # Define macros
 SHELL := /bin/bash
 BREW_TEST := Example usage
+RVM_TEST := RVM is the Ruby enVironment Manager (rvm)
 BREW_TAP = versions
 FILE_TEST := No such file
+RUBY_TEST := ruby-1.9.3
 
 # ***** Brew Installed? *****
 ifneq (,$(findstring $(BREW_TEST),$(shell brew help)))
@@ -11,12 +13,25 @@ else
 	DO_BREW = ruby -e $(curl -fsSL https://raw.github.com/mxcl/homebrew/go)
 endif
 
+# ***** RVM Installed? *****
+ifneq (,$(findstring $(RVM_TEST),$(shell rvm help)))
+	DO_RVM = rvm get stable
+else
+	DO_RVM = curl -L get.rvm.io | bash -s stable
+endif
+
+# ***** Ruby 1.9.3 Installed? *****
+ifneq (,$(findstring $(RUBY_TEST),$(shell rvm list)))
+	DO_RUBY = rvm use 1.9.3 --default
+else
+	DO_RUBY = rvm install 1.9.3; rvm use 1.9.3 --default
+endif
 
 # ***** Bash Profile Exist? *****
 ifneq (,$(findstring $(FILE_TEST),$(shell ls ~/.bash_profile)))
 	DO_BASH_PROFILE = echo bash_profile already exists
 else
-	DO_BASH_PROFILE = curl -fsSL https://raw.github.com/squince/macdevastation/master/bash_profile > ~/.bash_profile && source ~/.bash_profile
+	DO_BASH_PROFILE = curl -fsSL https://raw.github.com/squince/macdevastation/master/bash_profile > ~/.bash_profile; chmod go+r+w ~/.bash_profile
 endif
 
 
@@ -64,8 +79,8 @@ cli: ruby
 	#	
 	# Install Command Line Tools
 
-	-gem install git-pairing
-	-gem install promptula
+	-gem install git-pairing --no-ri --no-rdoc
+	-gem install promptula --no-ri --no-rdoc
 	$(DO_BASH_PROFILE)
 	$(DO_MACVIM)	
 	# Install Janus - VIM extensions
@@ -76,8 +91,8 @@ ruby: baseline
 	#
 	# Install Ruby and related tools
 
-	curl -L https://get.rvm.io | bash -s stable
-
+	$(DO_RVM)
+	$(DO_RUBY)
 	$(DO_BREW_TAP)
 	#brew install gcc48
 	chmod go+w /usr/local/lib
@@ -85,18 +100,15 @@ ruby: baseline
 	-brew install libksba
 	-brew install cmake
 	rvm autolibs enable
-	rvm install 1.9.3
-	rvm use 1.9.3 --default
 
-	#
 	# Gem installs
 	gem update --system
-	gem install rake
-	gem install bundler
+	gem install rake --no-ri --no-rdoc
+	gem install bundler --no-ri --no-rdoc
 	gem install chef --no-ri --no-rdoc
-	gem install knife-block
-	gem install buildr
-	gem install gemcutter
+	gem install knife-block --no-ri --no-rdoc
+	gem install buildr --no-ri --no-rdoc
+	gem install gemcutter --no-ri --no-rdoc
 
 python: baseline
 	#

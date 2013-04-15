@@ -8,7 +8,7 @@ Mac Dev A Station - get it?!  MacDevAStation... macdevastation...
 # Usage
 
 ```
-  export PATH=/usr/local/bin:$PATH; sudo make [ baseline | ruby | python | databases | node | all ]
+  export PATH=/usr/local/bin:$PATH; sudo make all; source ~/.bash_profile
 ```
 
 # Install and/or Configure
