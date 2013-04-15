@@ -2,8 +2,7 @@
 
 This is a basic Makefile to configure my Mac OS X box from scratch for software development
 
-Mac Dev A Station - get it?!  MacDevAStation... macdevastation...
-(sorry, couldn't resist the childishness)
+Mac-Dev-A-Station... couldn't resist
 
 # Usage
 
