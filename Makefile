@@ -92,6 +92,7 @@ ruby: baseline
 
 	#
 	# Gem installs
+	gem update --system
 	gem install rake
 	gem install bundler
 	gem install chef --no-ri --no-rdoc
