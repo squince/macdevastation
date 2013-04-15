@@ -85,6 +85,7 @@ cli: ruby
 	$(DO_MACVIM)	
 	# Install Janus - VIM extensions
 	-curl -Lo- https://bit.ly/janus-bootstrap | bash
+	-curl -Lo- https://iterm2.googlecode.com/files/iTerm2_v1_0_0.zip > ./iTerm2.zip; unzip -uq ./iTerm2.zip -d /Application
 
 
 ruby: baseline
@@ -130,5 +131,5 @@ node: baseline
 	#
 	# Install node and npm packages
 
-	brew install node
-	npm install grunt-cli -g
+	-brew install node
+	-npm install grunt-cli -g
