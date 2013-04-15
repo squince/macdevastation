@@ -42,6 +42,12 @@ else
 	DO_MACVIM = brew install macvim
 endif
 
+# ***** vimrc.after Installed? *****
+ifneq (,$(findstring $(FILE_TEST),$(shell ls ~/.vimrc.after)))
+	DO_VIMRC = echo ~/.vimrc.after already installed
+else
+	DO_VIMRC = curl -fsSL https://raw.github.com/squince/macdevastation/master/vimrc.after > ~/.vimrc.after; chmod go+r+w ~/.vimrc.after
+endif
 
 # ***** Brew Versions Tapped? *****
 ifeq (,$(findstring $(BREW_TAP),$(shell brew tap)))
@@ -86,6 +92,7 @@ cli: ruby
 	# Install Janus - VIM extensions
 	-curl -Lo- https://bit.ly/janus-bootstrap | bash
 	-curl -Lo- https://iterm2.googlecode.com/files/iTerm2_v1_0_0.zip > ./iTerm2.zip; unzip -uq ./iTerm2.zip -d /Application
+	$(DO_VIMRC)
 
 
 ruby: baseline
