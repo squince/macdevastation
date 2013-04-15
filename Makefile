@@ -114,6 +114,7 @@ python: baseline
 	#
 	# Install Python and related tools
 
+	#brew link --overwrite python
 	brew install python --framework
 	easy_install pip
 	pip install virtualenv	
