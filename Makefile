@@ -60,19 +60,17 @@ baseline:
 	brew doctor
 	-brew install git
 
-cli: 
-	#ruby
+cli: ruby
 	#	
 	# Install Command Line Tools
 
+	-gem install git-pairing
+	-gem install promptula
 	$(DO_BASH_PROFILE)
 	$(DO_MACVIM)	
 	# Install Janus - VIM extensions
 	-curl -Lo- https://bit.ly/janus-bootstrap | bash
 
-	-gem install git-pairing
-	-gem install promptula
-	-promptula --install
 
 ruby: baseline
 	#
