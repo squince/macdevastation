@@ -15,6 +15,7 @@ Mac-Dev-A-Station... couldn't resist
 * HomeBrew
 * gcc-4.2
 * Janus (for VIM)
+* iTerm2
 * languages:
   * rvm and ruby 1.9.x
   * Python 1.7+
@@ -37,6 +38,5 @@ Mac-Dev-A-Station... couldn't resist
 ### Not yet implemented
 * vimrc
 * JDK
-* iTerm2
 * TextMate
 * VirtualBox
