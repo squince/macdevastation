@@ -64,8 +64,8 @@ cli: ruby
 	#	
 	# Install Command Line Tools
 
-	-gem install git-pairing
-	-gem install promptula
+	-gem install git-pairing --no-ri --no-rdoc
+	-gem install promptula --no-ri --no-rdoc
 	$(DO_BASH_PROFILE)
 	$(DO_MACVIM)	
 	# Install Janus - VIM extensions
@@ -91,12 +91,12 @@ ruby: baseline
 	#
 	# Gem installs
 	gem update --system
-	gem install rake
-	gem install bundler
+	gem install rake --no-ri --no-rdoc
+	gem install bundler --no-ri --no-rdoc
 	gem install chef --no-ri --no-rdoc
-	gem install knife-block
-	gem install buildr
-	gem install gemcutter
+	gem install knife-block --no-ri --no-rdoc
+	gem install buildr --no-ri --no-rdoc
+	gem install gemcutter --no-ri --no-rdoc
 
 python: baseline
 	#
