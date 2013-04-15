@@ -28,6 +28,7 @@ Mac Dev A Station - get it?!  MacDevAStation... macdevastation...
   * promptula
   * chef
   * knife-block
+  * buildr
 * configure:
   * ~/.bash_profile
   * aliases for opening some cli tools
@@ -35,8 +36,8 @@ Mac Dev A Station - get it?!  MacDevAStation... macdevastation...
   * command prompt
 
 ### Not yet implemented
+* vimrc
+* JDK
 * iTerm2
 * TextMate
 * VirtualBox
-* GitHub
-* vimrc
