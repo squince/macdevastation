@@ -7,28 +7,28 @@ FILE_TEST := No such file
 RUBY_TEST := ruby-1.9.3
 
 # ***** Brew Installed? *****
-ifneq (,$(findstring $(BREW_TEST),$(shell brew help)))
+ifneq (,$(findstring $(BREW_TEST),$(shell brew help 2>1)))
 	DO_BREW = pushd /usr/local/Library; git stash; git clean -df; popd; brew update
 else
 	DO_BREW = ruby -e $(curl -fsSL https://raw.github.com/mxcl/homebrew/go)
 endif
 
 # ***** RVM Installed? *****
-ifneq (,$(findstring $(RVM_TEST),$(shell rvm help)))
+ifneq (,$(findstring $(RVM_TEST),$(shell rvm help 2>1)))
 	DO_RVM = rvm get stable
 else
 	DO_RVM = curl -L get.rvm.io | bash -s stable
 endif
 
 # ***** Ruby 1.9.3 Installed? *****
-ifneq (,$(findstring $(RUBY_TEST),$(shell rvm list)))
+ifneq (,$(findstring $(RUBY_TEST),$(shell rvm list 2>1)))
 	DO_RUBY = rvm use 1.9.3 --default
 else
 	DO_RUBY = rvm install 1.9.3; rvm use 1.9.3 --default
 endif
 
 # ***** Bash Profile Exist? *****
-ifneq (,$(findstring $(FILE_TEST),$(shell ls ~/.bash_profile)))
+ifneq (,$(findstring $(FILE_TEST),$(shell ls ~/.bash_profile 2>1)))
 	DO_BASH_PROFILE = echo bash_profile already exists
 else
 	DO_BASH_PROFILE = curl -fsSL https://raw.github.com/squince/macdevastation/master/bash_profile > ~/.bash_profile; chmod go+r+w ~/.bash_profile
@@ -36,21 +36,21 @@ endif
 
 
 # ***** MacVim Installed? *****
-ifneq (,$(findstring $(FILE_TEST),$(shell ls /Applications/MacVim.app)))
+ifneq (,$(findstring $(FILE_TEST),$(shell ls /Applications/MacVim.app 2>1)))
 	DO_MACVIM = echo MacVim already installed
 else
 	DO_MACVIM = brew install macvim
 endif
 
 # ***** vimrc.after Installed? *****
-ifneq (,$(findstring $(FILE_TEST),$(shell ls ~/.vimrc.after)))
+ifneq (,$(findstring $(FILE_TEST),$(shell ls ~/.vimrc.after 2>1)))
 	DO_VIMRC = echo ~/.vimrc.after already installed
 else
 	DO_VIMRC = curl -fsSL https://raw.github.com/squince/macdevastation/master/vimrc.after > ~/.vimrc.after; chmod go+r+w ~/.vimrc.after
 endif
 
 # ***** Brew Versions Tapped? *****
-ifeq (,$(findstring $(BREW_TAP),$(shell brew tap)))
+ifeq (,$(findstring $(BREW_TAP),$(shell brew tap 2>1 2>1)))
 	DO_BREW_TAP = brew tap homebrew/versions
 else
 	DO_BREW_TAP = echo Already Brew Tapped Versions
@@ -77,7 +77,8 @@ baseline:
 	#
 	# Install Homebrew
 	
-	$(DO_BREW)	
+	sudo chown -R $(USER) /usr/local
+	$(DO_BREW) 2>1	
 	brew doctor
 	-brew install git
 
@@ -87,21 +88,21 @@ cli: ruby
 
 	-gem install git-pairing --no-ri --no-rdoc
 	-gem install promptula --no-ri --no-rdoc
-	$(DO_BASH_PROFILE)
-	$(DO_MACVIM)	
+	$(DO_BASH_PROFILE) 2>1
+	$(DO_MACVIM) 2>1	
 	# Install Janus - VIM extensions
 	-curl -Lo- https://bit.ly/janus-bootstrap | bash
 	-curl -Lo- https://iterm2.googlecode.com/files/iTerm2_v1_0_0.zip > ./iTerm2.zip; unzip -uq ./iTerm2.zip -d /Application
-	$(DO_VIMRC)
+	$(DO_VIMRC) 2>1
 
 
 ruby: baseline
 	#
 	# Install Ruby and related tools
 
-	$(DO_RVM)
-	$(DO_RUBY)
-	$(DO_BREW_TAP)
+	$(DO_RVM) 2>1
+	$(DO_RUBY) 2>1
+	$(DO_BREW_TAP) 2>1
 	#brew install gcc48
 	chmod go+w /usr/local/lib
 	chmod go+w /usr/local/share
@@ -110,6 +111,7 @@ ruby: baseline
 	rvm autolibs enable
 
 	# Gem installs
+	rvm use --default 1.9.3
 	gem update --system
 	gem install rake --no-ri --no-rdoc
 	gem install bundler --no-ri --no-rdoc
