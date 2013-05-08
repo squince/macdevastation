@@ -7,7 +7,8 @@ Mac-Dev-A-Station... couldn't resist
 # Usage
 
 ```
-  export PATH=/usr/local/bin:$PATH; sudo make all; source ~/.bash_profile
+  export PATH=/usr/local/bin:$PATH; make all;
+  source ~/.bash_profile
 ```
 
 # Install and/or Configure
