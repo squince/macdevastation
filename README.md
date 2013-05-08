@@ -33,10 +33,10 @@ Mac-Dev-A-Station... couldn't resist
   * ~/.bash_profile
   * aliases for opening some cli tools
   * environment variables {EDITOR, PS1}
+  * vimrc
   * command prompt
 
 ### Not yet implemented
-* vimrc
 * JDK
 * TextMate
 * VirtualBox
