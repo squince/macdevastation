@@ -103,8 +103,6 @@ ruby: baseline
 	$(DO_RUBY)
 	$(DO_BREW_TAP)
 	#brew install gcc48
-	chmod go+w /usr/local/lib
-	chmod go+w /usr/local/share
 	-brew install libksba
 	-brew install cmake
 	rvm autolibs enable
