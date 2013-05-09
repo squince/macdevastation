@@ -7,7 +7,8 @@ Mac-Dev-A-Station... couldn't resist
 # Usage
 
 ```
-  export PATH=/usr/local/bin:$PATH; sudo make all; source ~/.bash_profile
+  export PATH=/usr/local/bin:$PATH; make all;
+  source ~/.bash_profile
 ```
 
 # Install and/or Configure
@@ -33,10 +34,10 @@ Mac-Dev-A-Station... couldn't resist
   * ~/.bash_profile
   * aliases for opening some cli tools
   * environment variables {EDITOR, PS1}
+  * vimrc
   * command prompt
 
 ### Not yet implemented
-* vimrc
 * JDK
 * TextMate
 * VirtualBox
