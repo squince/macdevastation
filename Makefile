@@ -81,6 +81,8 @@ baseline:
 	$(DO_BREW) 2>1	
 	brew doctor
 	-brew install git
+	- brew uninstall ack
+	- brew install the_silver_searcher
 
 cli: ruby
 	#	
