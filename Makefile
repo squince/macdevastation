@@ -95,6 +95,7 @@ cli: ruby
 	# Install Janus - VIM extensions
 	-curl -Lo- https://bit.ly/janus-bootstrap | bash
 	-curl -Lo- https://iterm2.googlecode.com/files/iTerm2_v1_0_0.zip > ./iTerm2.zip; unzip -uq ./iTerm2.zip -d /Application
+	-pushd ~/.vim/janus/vim/langs/; git clone https://github.com/mintplant/vim-literate-coffeescript; popd
 	$(DO_VIMRC) 2>1
 
 
