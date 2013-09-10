@@ -1,4 +1,4 @@
-export PATH="/usr/local/bin:${PATH}"
+export PATH="/usr/local/share/npm/bin:/usr/local/bin:${PATH}"
 export EDITOR=vim
 export PS1="\$(pwd) \$(promptula) "
 
