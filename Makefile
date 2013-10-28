@@ -15,11 +15,9 @@ endif
 
 # ***** RVM Installed? *****
 ifneq (,$(findstring $(RVM_TEST),$(shell rvm help 2>1)))
-	DO_RVM = rvm get stable
-	source ~/.rvm/scripts/rvm
+	DO_RVM = rvm get stable; source ~/.rvm/scripts/rvm
 else
-	DO_RVM = curl -L get.rvm.io | bash -s stable
-	source ~/.rvm/scripts/rvm
+	DO_RVM = curl -L get.rvm.io | bash -s stable; source ~/.rvm/scripts/rvm
 endif
 
 # ***** Ruby 1.9.3 Installed? *****
@@ -91,7 +89,6 @@ cli: ruby
 	# Install Command Line Tools
 
 	-gem install git-pairing --no-ri --no-rdoc
-	-gem install promptula --no-ri --no-rdoc
 	$(DO_BASH_PROFILE) 2>1
 	$(DO_MACVIM) 2>1	
 	# Install Janus - VIM extensions
