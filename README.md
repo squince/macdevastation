@@ -6,6 +6,8 @@ Mac-Dev-A-Station... couldn't resist
 
 # Usage
 
+  download the Makefile locally, then
+
 ```
   export PATH=/usr/local/bin:$PATH; make all;
   source ~/.bash_profile
