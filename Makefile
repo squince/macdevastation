@@ -49,6 +49,17 @@ else
 	DO_VIMRC = curl -fsSL https://raw.github.com/squince/macdevastation/master/vimrc.after > ~/.vimrc.after; chmod go+r+w ~/.vimrc.after
 endif
 
+# ***** autoswap_mac.vim Installed? *****
+ifneq (,$(findstring $(FILE_TEST),$(shell ls ~/.vim/plugin/autoswap_mac.vim 2>1)))
+	DO_VIMSWAP = echo autoswap_mac.vim already installed
+else
+	DO_VIMSWAP = mkdir -p ~/.vim/plugin/bin; \
+						 curl -fsSL https://raw.github.com/mhuggins7278/autoswap_mac_iterm/master/plugin/autoswap_mac.vim > ~/.vim/plugin/autoswap_mac.vim; \
+						 chmod go+r+w ~/.vim/plugin/autoswap_mac.vim; \
+						 curl -fsSL https://raw.github.com/mhuggins7278/autoswap_mac_iterm/master/plugin/bin/vim_iterm_find_session.applescript > ~/.vim/plugin/bin/vim_iterm_find_session.applescript; \
+						 chmod go+r+w ~/.vim/plugin/bin/vim_iterm_find_session.applescript;
+endif
+
 # ***** Brew Versions Tapped? *****
 ifeq (,$(findstring $(BREW_TAP),$(shell brew tap 2>1 2>1)))
 	DO_BREW_TAP = brew tap homebrew/versions
@@ -81,8 +92,8 @@ baseline:
 	$(DO_BREW) 2>1	
 	brew doctor
 	-brew install git
-	- brew uninstall ack
-	- brew install the_silver_searcher
+	-brew uninstall ack
+	-brew install the_silver_searcher
 
 cli: ruby
 	#	
@@ -95,8 +106,10 @@ cli: ruby
 	-curl -Lo- https://bit.ly/janus-bootstrap | bash
 	-curl -Lo- https://iterm2.googlecode.com/files/iTerm2_v1_0_0.zip > ./iTerm2.zip; unzip -uq ./iTerm2.zip -d /Application
 	-pushd ~/.vim/janus/vim/langs/; git clone https://github.com/mintplant/vim-literate-coffeescript; popd
-	$(DO_VIMRC) 2>1
 
+	$(DO_VIMRC) 2>1
+	$(DO_VIMSWAP) 2>1
+	-brew install todo-txt
 
 ruby: baseline
 	#
