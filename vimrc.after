@@ -12,5 +12,3 @@ set t_fs=
 set titleold=
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
-set mouse=a
-set clipboard=unnamed
