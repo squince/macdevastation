@@ -60,6 +60,24 @@ else
 						 chmod go+r+w ~/.vim/plugin/bin/vim_iterm_find_session.applescript;
 endif
 
+# ***** vim-json.vim Installed? *****
+ifneq (,$(findstring $(FILE_TEST),$(shell ls ~/.vim/syntax/json.vim 2>1)))
+	DO_VIMJSON = echo json.vim already installed
+else
+	DO_VIMJSON = mkdir -p ~/.vim/syntax; \
+						 mkdir -p ~/.vim/ftdetect; \
+						 mkdir -p ~/.vim/ftplugin; \
+						 mkdir -p ~/.vim/indent; \
+						 curl -fsSL https://raw.github.com/elzr/vim-json/master/syntax/json.vim > ~/.vim/syntax/json.vim; \
+						 chmod go+r+w ~/.vim/syntax/json.vim; \
+						 curl -fsSL https://raw.github.com/elzr/vim-json/master/indent/json.vim > ~/.vim/indent/json.vim; \
+						 chmod go+r+w ~/.vim/indent/json.vim; \
+						 curl -fsSL https://raw.github.com/elzr/vim-json/master/ftdetect/json.vim > ~/.vim/ftdetect/json.vim; \
+						 chmod go+r+w ~/.vim/ftdetect/json.vim; \
+						 curl -fsSL https://raw.github.com/elzr/vim-json/master/ftplugin/json.vim > ~/.vim/ftplugin/json.vim; \
+						 chmod go+r+w ~/.vim/ftplugin/json.vim; \
+endif
+
 # ***** Brew Versions Tapped? *****
 ifeq (,$(findstring $(BREW_TAP),$(shell brew tap 2>1 2>1)))
 	DO_BREW_TAP = brew tap homebrew/versions
@@ -109,6 +127,7 @@ cli: ruby
 
 	$(DO_VIMRC) 2>1
 	$(DO_VIMSWAP) 2>1
+	$(DO_VIMJSON) 2>1
 	-brew install todo-txt
 
 ruby: baseline
