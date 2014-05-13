@@ -32,7 +32,7 @@ set textwidth=0
 set wrapmargin=0
 
 "damned those trailing spaces
-autocmd filetype ruby,handlebars,html,litcoffee,coffee,css,less,md,yaml,py,python,javascript,js autocmd bufwritepre <buffer> :%s/+$//e
+autocmd filetype ruby,handlebars,html,litcoffee,coffee,css,less,md,yaml,py,python,javascript,js autocmd bufwritepre <buffer> :%s/\s\+$//e
 
 " scrolling
 set mouse=a
