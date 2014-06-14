@@ -75,11 +75,11 @@ else
 						 curl -fsSL https://raw.github.com/elzr/vim-json/master/ftdetect/json.vim > ~/.vim/ftdetect/json.vim; \
 						 chmod go+r+w ~/.vim/ftdetect/json.vim; \
 						 curl -fsSL https://raw.github.com/elzr/vim-json/master/ftplugin/json.vim > ~/.vim/ftplugin/json.vim; \
-						 chmod go+r+w ~/.vim/ftplugin/json.vim; \
+						 chmod go+r+w ~/.vim/ftplugin/json.vim;
 endif
 
 # ***** Brew Versions Tapped? *****
-ifeq (,$(findstring $(BREW_TAP),$(shell brew tap 2>1 2>1)))
+ifneq (,$(findstring $(BREW_TAP),$(shell brew tap 2>1)))
 	DO_BREW_TAP = brew tap homebrew/versions
 else
 	DO_BREW_TAP = echo Already Brew Tapped Versions
