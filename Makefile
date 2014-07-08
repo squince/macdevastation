@@ -104,12 +104,13 @@ all: baseline ruby cli python databases node
 
 baseline:
 	#
-	# Install Homebrew
+	# Install Homebrew, git, and ag
 	
 	sudo chown -R $(USER) /usr/local
 	$(DO_BREW) 2>1	
 	brew doctor
 	-brew install git
+	-curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
 	-brew uninstall ack
 	-brew install the_silver_searcher
 
