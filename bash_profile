@@ -2,10 +2,15 @@ alias ll='ls -lhaFG'
 alias vi='/Applications/MacVim.app/Contents/MacOS/Vim'
 alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 alias td='/usr/local/Cellar/todo-txt/2.9/bin/todo.sh'
+alias tdl='clear; /usr/local/Cellar/todo-txt/2.9/bin/todo.sh ls'
 alias todo='/usr/local/Cellar/todo-txt/2.9/bin/todo.sh'
-alias ll='ls -lha'
+alias ll='ls -lhaFG'
 alias eclipse='open -a Eclipse'
 alias updatestorm='pushd ~/github/Operations/Storm; sudo ./update.sh; popd'
+alias fixmysql='myisamchk --silent --force --fast --update-state /home/dataw/mysql/*/*.MYI'
+alias gitching="git whatchanged | grep -A 4 commit | less"
+alias ports="netstat -a | grep LISTEN"
+alias pairs="~/github/pair-stats/pair-stats"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 
