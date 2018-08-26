@@ -24,17 +24,34 @@ let g:indentLine_noConcealCursor=""
 
 set wildignore+=*.pyc,*.zip,*.gz,*.bz,*.tar,*.jpg,*.png,*.gif,*.avi,*.wmv,*.ogg,*.mp3,*.mov
 
+" Set the type for the file type and override if file type already has detected
+au BufRead,BufNewFile *.mustache set filetype=sql
+au BufRead,BufNewFile *.tag set filetype=html
+
 " use the mac clipboard
 set clipboard=unnamed
 
-" no forced wrapping, grandpa width buffers are not needed...
+" no forced wrapping, grandpa width buffers are not needed
+set wrap
+set linebreak
+set nolist  " list disables linebreak
 set textwidth=0
 set wrapmargin=0
+set formatoptions=cqt
+au FileType * set fo-=t 
 
 "damned those trailing spaces
-autocmd filetype ruby,handlebars,html,litcoffee,coffee,css,less,md,yaml,py,python,javascript,js autocmd bufwritepre <buffer> :%s/\s\+$//e
+autocmd filetype sql,ruby,handlebars,html,litcoffee,coffee,css,less,md,yaml,py,python,javascript,js autocmd bufwritepre <buffer> :%s/\s\+$//e
+
+"show the tabs
+set listchars=tab:\ ▸
 
 " scrolling
 set mouse=a
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
+
+" use the following character before custom commands - for plug-ins and such
+" mapleader > the value of <leader>
+" e.g., ":,T" will open the command-T plugin for fuzzy file searching
+let mapleader=","
