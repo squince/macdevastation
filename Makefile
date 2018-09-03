@@ -113,6 +113,8 @@ baseline:
 	-curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
 	-brew uninstall ack
 	-brew install the_silver_searcher
+	-brew install diff-so-fancy
+	-brew install fd
 
 cli: ruby
 	#	
